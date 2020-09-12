@@ -17,6 +17,7 @@ class Net(nn.Module):
 
     def forward(self, x):
         # 2x2 Max pooling
+        #print(x.shape)
         x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2))
         # filter = 2, default stride = filter
         x = F.max_pool2d(F.relu(self.conv2(x)), 2)
@@ -25,7 +26,7 @@ class Net(nn.Module):
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
         x = self.fc3(x)
-        print(x)
+        #print(x)
         return x
 
     def num_flat_features(self, x):
@@ -38,8 +39,8 @@ class Net(nn.Module):
         return num_features#400
 
 
-net = Net()
-print(net)
+#net = Net()
+#print(net)
 
-input = torch.randn(1, 1, 32, 32)
-net.forward(input)
+#input = torch.randn(1, 1, 32, 32)
+#net.forward(input)
