@@ -4,6 +4,8 @@ import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
 import LeNet
+import LeNet2
+
 import numpy as np
 from torch.optim import lr_scheduler
 
@@ -16,7 +18,7 @@ def save_model(model,optimizer,epoch):
 
 def load_model(path):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    net = LeNet.Net().to(device)
+    net = LeNet2.Net().to(device)
     net.load_state_dict(torch.load(path))
     return net
     
@@ -49,7 +51,7 @@ def data_and_lenet_define():
 
 
     #use already define Lenet
-    net = LeNet.Net().to(device)
+    net = LeNet2.Net().to(device)
     
     loss_fuc = nn.CrossEntropyLoss() 
     optimizer = optim.Adam(net.parameters(),lr = 0.001,weight_decay = 0.005) 
@@ -111,7 +113,7 @@ def train_net(device,train_loader,test_loader,net,loss_fuc,optimizer):
 
 
 
-path = '../models/'+'lenet_2.pth'
+path = '../models/'+'lenet_3.pth'
 def load_model_and_test(path):
 
 
@@ -135,9 +137,9 @@ def load_model_and_test(path):
     
 
 
-load_model_and_test(path)
+#load_model_and_test(path)
 
 
-#device,train_loader,test_loader,net,loss_fuc,optimizer = data_and_lenet_define()
-#train_net(device,train_loader,test_loader,net,loss_fuc,optimizer)
+device,train_loader,test_loader,net,loss_fuc,optimizer = data_and_lenet_define()
+train_net(device,train_loader,test_loader,net,loss_fuc,optimizer)
 
