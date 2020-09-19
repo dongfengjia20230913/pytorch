@@ -5,11 +5,11 @@ import torch.nn.functional as F
 
 class Net(nn.Module):
 
-    def __init__(self):
+    def __init__(self,imgChannel):
         super(Net, self).__init__()
 
         self.features = nn.Sequential(
-            nn.Conv2d(1, 6, 5),#self.C1 
+            nn.Conv2d(imgChannel, 6, 5),#self.C1 
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2, stride=2),# self.S2
 
